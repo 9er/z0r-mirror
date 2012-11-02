@@ -53,6 +53,10 @@ function keypress(e) {
             // SPACEBAR
             next();
         }
+        else if (event.keyCode == 27) {
+            // ESCAPE
+            unload_iframe();
+        }
     }
 }
 var i = window.location.hash.replace("#", "");
@@ -67,40 +71,77 @@ function init() {
 </script>
 <style type="text/css">
 body {
+    color:red;
     background:black;
+    text-align:center;
+    font-family:helvetica;
 }
 #iframe {
     border:none;
+    width:800px;
+    height:600px;
 }
-input {
+#controls {
+    margin:0 auto;
+    width:240px;
+    padding:10px;
+}
+#controls div, #controls input {
+    color:#500;
     background:black;
-    color:red;
-    border:thin dotted red;
-    width:48px;
+    border:thin solid #300;
+    box-shadow: 0px 0px 8px #300;
+}
+#controls:hover div, #controls:hover input {
+    color:#f00;
+    box-shadow: 0px 0px 8px #500;
+    border:thin solid #500;
+}
+.button {
+    display:inline-block;
     text-align:center;
+    vertical-align:middle;
+    padding:4px;
+    margin:0px 0px 5px 0px;
+    height:15px;
+    width:52px;
+    font-size:14px;
+    cursor:pointer;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+}
+#controls:hover .button:hover {
+    border:thin solid red;
+    box-shadow: 0px 0px 8px #f00;
 }
 a {
-    color:red;
+    color:#500;
     text-decoration:none;
     font-size:11px;
+}
+a:hover {
+    color:#f00;
 }
 </style>
 </head>
 
-<body style="text-align:center;background:black;" onLoad="javascript:init();">
+<body onLoad="javascript:init();">
 
-<iframe src="" id="iframe" width="800" height="600">
+<iframe src="" id="iframe">
 </iframe>
 
-<p id="test"></p>
 <br>
-<input type="button" onClick="javascript:prev();" value="<<<">
-<input type="button" onClick="javascript:unload_iframe();" value="STOP">
-<input type="text" id="number" value="">
-<input type="button" onClick="javascript:i=document.getElementById('number').value;load_iframe();" value="GO">
-<input type="button" onClick="javascript:next();" value=">>>">
-<br>
-<br>
+<div id="controls">
+    <div class="button" onClick="javascript:unload_iframe();">STOP</div>
+    <br>
+    <div class="button" onClick="javascript:prev();">&lt;&lt;&lt;</div>
+    <input type="text" class="button" id="number" value="">
+    <div class="button" onClick="javascript:next();">&gt;&gt;&gt;</div>
+    <br>
+    <div class="button" onClick="javascript:i=document.getElementById('number').value;load_iframe();">PLAY</div>
+    <br>
+</div>
 <a id="source" href="" target="_blank"></a>
 <br>
 <a id="index" href="" target="_blank"></a>
