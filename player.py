@@ -101,7 +101,7 @@ class Controls(object):
         self.fs_toggler.toggle()
 
     def load(self):
-        uri = path.join(path.dirname(path.abspath(__file__)), str(self.clip) + ".swf")
+        uri = path.join(path.dirname(path.abspath(__file__)), "swf-files/" + str(self.clip) + ".swf")
         self.view.open(uri)
         print "loading clip " + str(self.clip) + " from " + uri + " (http://www.z0r.de/" + str(self.clip) + ")"
         for callback in self.callbacks_new_clip:

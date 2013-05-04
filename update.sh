@@ -10,7 +10,7 @@ for i in `seq 0 1 $total`; do
     if [ ! -f "$i.swf" ]; then
         echo "downloading clip #$i"
         flashobj=`wget "http://z0r.de/$i" -O - -q | grep "swfobject.embedSWF" | cut -d "\"" -f 2`
-        wget "$flashobj" -O "$i.swf" -q
+        wget "$flashobj" -O "swf-files/$i.swf" -q
         downloaded=$(($downloaded+1))
     fi
 done
