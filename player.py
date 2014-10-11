@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 from twisted.internet import gtk2reactor # for gtk-2.0
 gtk2reactor.install()
