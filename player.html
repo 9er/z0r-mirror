@@ -5,8 +5,8 @@
 <title>z0r</title>
 <script type="text/javascript">
 function load_iframe() {
-    var file = i + '.swf';
-    document.getElementById('iframe').src = file;
+    var file = 'swf-files/' + i + '.swf';
+    document.getElementById('object').data = file;
     var source = document.getElementById('source');
     source.href = "http://www.z0r.de/" + i;
     source.innerHTML = source.href
@@ -16,7 +16,7 @@ function load_iframe() {
     index.innerHTML = "Index"
 }
 function unload_iframe() {
-    document.getElementById('iframe').src = '';
+    document.getElementById('object').data = '';
 }
 function jump(num) {
     i = num;
@@ -26,14 +26,14 @@ function next() {
     i++;
     load_iframe();
     window.location.hash = "#" + i;
-    document.getElementById('number').value = i;
+    document.getElementById('number').textContent = i;
 }
 function prev() {
     i--;
     load_iframe();
     window.location.hash = "#" + i;
-    document.getElementById('number').value = i;
-}   
+    document.getElementById('number').textContent = i;
+}
 function keypress(e) {
     var event = window.event ? window.event : e;
     if (true) {
@@ -47,7 +47,7 @@ function keypress(e) {
         }
         else if (event.keyCode == 13) {
             // ENTER
-            jump(document.getElementById('number').value);
+            jump(document.getElementById('number').textContent);
         }
         else if (event.keyCode == 32) {
             // SPACEBAR
@@ -66,7 +66,7 @@ if (!i) {
 document.onkeydown = keypress;
 function init() {
     load_iframe();
-    document.getElementById('number').value = i;
+    document.getElementById('number').textContent = i;
 }
 </script>
 <style type="text/css">
@@ -76,23 +76,23 @@ body {
     text-align:center;
     font-family:helvetica;
 }
-#iframe {
+#object{
     border:none;
-    width:800px;
-    height:600px;
+    width:1620px;
+    height:880px;
 }
 #controls {
     margin:0 auto;
     width:240px;
     padding:10px;
 }
-#controls div, #controls input {
+#controls span {
     color:#500;
     background:black;
     border:thin solid #300;
     box-shadow: 0px 0px 8px #300;
 }
-#controls:hover div, #controls:hover input {
+#controls:hover span {
     color:#f00;
     box-shadow: 0px 0px 8px #500;
     border:thin solid #500;
@@ -127,23 +127,16 @@ a:hover {
 </head>
 
 <body onLoad="javascript:init();">
-
-<iframe src="" id="iframe">
-</iframe>
-
+<object id="object" type="application/x-shockwave-flash" data=""></object>
 <br>
-<div id="controls">
-    <div class="button" onClick="javascript:unload_iframe();">STOP</div>
-    <br>
-    <div class="button" onClick="javascript:prev();">&lt;&lt;&lt;</div>
-    <input type="text" class="button" id="number" value="">
-    <div class="button" onClick="javascript:next();">&gt;&gt;&gt;</div>
-    <br>
-    <div class="button" onClick="javascript:i=document.getElementById('number').value;load_iframe();">PLAY</div>
-    <br>
-</div>
+<span id="controls">
+    <span class="button" onClick="javascript:unload_iframe();">STOP</span>
+    <span class="button" onClick="javascript:prev();">&lt;&lt;&lt;</span>
+    <span class="button" id="number"></span>
+    <span class="button" onClick="javascript:next();">&gt;&gt;&gt;</span>
+    <span class="button" onClick="javascript:i=document.getElementById('number').value;load_iframe();">PLAY</span>
+</span>
 <a id="source" href="" target="_blank"></a>
-<br>
 <a id="index" href="" target="_blank"></a>
 
 </body>
